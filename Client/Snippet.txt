@@ -1,0 +1,5 @@
+﻿			byte[] IV = new byte[] { 0x48, 0x5E, 0x52, 0xA3, 0xF1, 0x93, 0xFE, 0xCA, 0x8F, 0xAA, 0xAC, 0x65, 0x12, 0x8C, 0xE0, 0xE3 };
+
+
+			var encrypted = QuickCrypto.EncryptStringToBytes_Aes( txtPlainToken.Text, encryptionKey, IV );
+			txtEncryptedToken.Text = QuickCrypto.ByteArrayToString( encrypted );
