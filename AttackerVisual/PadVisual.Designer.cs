@@ -48,7 +48,13 @@
 			this.txtC1Prime = new System.Windows.Forms.MaskedTextBox();
 			this.label8 = new System.Windows.Forms.Label();
 			this.txtBlockPlaintext = new System.Windows.Forms.TextBox();
+			this.txtDelayMs = new System.Windows.Forms.NumericUpDown();
+			this.label9 = new System.Windows.Forms.Label();
+			this.txtServerResponse = new System.Windows.Forms.TextBox();
+			this.label10 = new System.Windows.Forms.Label();
+			this.chkCustomFreq = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.txtDelayMs)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// txtC1
@@ -231,11 +237,79 @@
 			this.txtBlockPlaintext.Size = new System.Drawing.Size(545, 29);
 			this.txtBlockPlaintext.TabIndex = 25;
 			// 
+			// txtDelayMs
+			// 
+			this.txtDelayMs.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtDelayMs.Location = new System.Drawing.Point(810, 78);
+			this.txtDelayMs.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+			this.txtDelayMs.Minimum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+			this.txtDelayMs.Name = "txtDelayMs";
+			this.txtDelayMs.Size = new System.Drawing.Size(120, 26);
+			this.txtDelayMs.TabIndex = 26;
+			this.txtDelayMs.Value = new decimal(new int[] {
+            800,
+            0,
+            0,
+            0});
+			// 
+			// label9
+			// 
+			this.label9.AutoSize = true;
+			this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label9.Location = new System.Drawing.Point(3, 328);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(156, 24);
+			this.label9.TabIndex = 27;
+			this.label9.Text = "Server Response";
+			// 
+			// txtServerResponse
+			// 
+			this.txtServerResponse.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtServerResponse.Location = new System.Drawing.Point(7, 356);
+			this.txtServerResponse.Margin = new System.Windows.Forms.Padding(4);
+			this.txtServerResponse.Name = "txtServerResponse";
+			this.txtServerResponse.Size = new System.Drawing.Size(430, 29);
+			this.txtServerResponse.TabIndex = 28;
+			// 
+			// label10
+			// 
+			this.label10.AutoSize = true;
+			this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label10.Location = new System.Drawing.Point(627, 78);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(177, 24);
+			this.label10.TabIndex = 29;
+			this.label10.Text = "Request Delay (MS)";
+			// 
+			// chkCustomFreq
+			// 
+			this.chkCustomFreq.AutoSize = true;
+			this.chkCustomFreq.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.chkCustomFreq.Location = new System.Drawing.Point(946, 76);
+			this.chkCustomFreq.Name = "chkCustomFreq";
+			this.chkCustomFreq.Size = new System.Drawing.Size(205, 28);
+			this.chkCustomFreq.TabIndex = 31;
+			this.chkCustomFreq.Text = "Custom Frequencies";
+			this.chkCustomFreq.UseVisualStyleBackColor = true;
+			// 
 			// PadVisual
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1508, 596);
+			this.Controls.Add(this.chkCustomFreq);
+			this.Controls.Add(this.label10);
+			this.Controls.Add(this.txtServerResponse);
+			this.Controls.Add(this.label9);
+			this.Controls.Add(this.txtDelayMs);
 			this.Controls.Add(this.txtBlockPlaintext);
 			this.Controls.Add(this.label8);
 			this.Controls.Add(this.label7);
@@ -257,6 +331,7 @@
 			this.Name = "PadVisual";
 			this.Text = "Padding Oracle Visualization";
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.txtDelayMs)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -283,6 +358,11 @@
 		private System.Windows.Forms.MaskedTextBox txtC1Prime;
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.TextBox txtBlockPlaintext;
+		private System.Windows.Forms.NumericUpDown txtDelayMs;
+		private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.TextBox txtServerResponse;
+		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.CheckBox chkCustomFreq;
 	}
 }
 

