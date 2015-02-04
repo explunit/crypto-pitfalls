@@ -123,9 +123,18 @@ namespace AttackerVisual
 				{
 					var paddingValue = (byte)( blockSize - fiddlePos );
 
-					/////
+					var fiddleByte = attempt;
+					if ( chkCustomFreq.Checked )
+					{
+						fiddleByte = ( blockSize - fiddlePos ) ^ cipherBytes[ fiddlePos ] ^ freq[ attempt ];
+					}
+					byteListModified[ fiddlePos ] = (byte)fiddleByte;
+
+					///////////////
+					// bad approach to updating UI while processing, but just to make it quick & easy:
+					txtC1Prime.Text = ByteArrayToString( byteListModified.ToArray() );
 					var padText = "";
-					for ( var i = 0; i < blockSize - iPrime.Count() -1; i++ )
+					for ( var i = 0; i < blockSize - iPrime.Count() - 1; i++ )
 					{
 						padText += "  ";
 					}
@@ -135,15 +144,9 @@ namespace AttackerVisual
 					}
 					txtFakeP1.Text = padText;
 					Application.DoEvents();
-					////
+					///////////////
 
-					var fiddleByte = attempt;
-					if ( chkCustomFreq.Checked )
-					{
-						fiddleByte = ( blockSize - fiddlePos ) ^ cipherBytes[ fiddlePos ] ^ freq[ attempt ];
-					}
-					byteListModified[ fiddlePos ] = (byte)fiddleByte;
-					
+
 					var newToken = ByteArrayToString( byteListModified.ToArray() );
 					var isValid = isValidPadding( newToken );
 					var millisecondsBetweenRequests = Convert.ToInt32( txtDelayMs.Value );
@@ -203,14 +206,6 @@ namespace AttackerVisual
 
 						break;
 					}
-
-					///////////////
-					// bad approach to updating UI while processing, but just to make it quick & easy:
-					txtC1Prime.Text = ByteArrayToString( byteListModified.ToArray() );
-
-					///////////////
-
-					Application.DoEvents();
 
 				}
 			}

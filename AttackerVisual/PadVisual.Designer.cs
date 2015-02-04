@@ -29,6 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PadVisual));
 			this.txtC1 = new System.Windows.Forms.MaskedTextBox();
 			this.txtFullPlainText = new System.Windows.Forms.MaskedTextBox();
 			this.txtEncryptedToken = new System.Windows.Forms.TextBox();
@@ -39,7 +40,6 @@
 			this.txtC2 = new System.Windows.Forms.MaskedTextBox();
 			this.txtFakeP1 = new System.Windows.Forms.MaskedTextBox();
 			this.txtI2 = new System.Windows.Forms.MaskedTextBox();
-			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
@@ -53,14 +53,19 @@
 			this.txtServerResponse = new System.Windows.Forms.TextBox();
 			this.label10 = new System.Windows.Forms.Label();
 			this.chkCustomFreq = new System.Windows.Forms.CheckBox();
+			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.txtDelayMs)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// txtC1
 			// 
 			this.txtC1.Font = new System.Drawing.Font("Courier New", 14.25F);
-			this.txtC1.Location = new System.Drawing.Point(7, 152);
+			this.txtC1.Location = new System.Drawing.Point(683, 169);
 			this.txtC1.Mask = "&&-&&-&&-&&-&&-&&-&&-&&-&&-&&-&&-&&-&&-&&-&&-&&";
 			this.txtC1.Name = "txtC1";
 			this.txtC1.Size = new System.Drawing.Size(545, 29);
@@ -70,7 +75,7 @@
 			// txtFullPlainText
 			// 
 			this.txtFullPlainText.Font = new System.Drawing.Font("Courier New", 14.25F);
-			this.txtFullPlainText.Location = new System.Drawing.Point(7, 497);
+			this.txtFullPlainText.Location = new System.Drawing.Point(7, 572);
 			this.txtFullPlainText.Name = "txtFullPlainText";
 			this.txtFullPlainText.Size = new System.Drawing.Size(1109, 29);
 			this.txtFullPlainText.TabIndex = 6;
@@ -101,7 +106,7 @@
 			// 
 			this.label2.AutoSize = true;
 			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(3, 470);
+			this.label2.Location = new System.Drawing.Point(3, 545);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(80, 24);
 			this.label2.TabIndex = 10;
@@ -110,18 +115,18 @@
 			// btnBegin
 			// 
 			this.btnBegin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnBegin.Location = new System.Drawing.Point(515, 78);
+			this.btnBegin.Location = new System.Drawing.Point(533, 61);
 			this.btnBegin.Name = "btnBegin";
 			this.btnBegin.Size = new System.Drawing.Size(88, 41);
 			this.btnBegin.TabIndex = 12;
-			this.btnBegin.Text = "Begin";
+			this.btnBegin.Text = "Decrypt";
 			this.btnBegin.UseVisualStyleBackColor = true;
 			this.btnBegin.Click += new System.EventHandler(this.btnBegin_Click);
 			// 
 			// txtC2
 			// 
 			this.txtC2.Font = new System.Drawing.Font("Courier New", 14.25F);
-			this.txtC2.Location = new System.Drawing.Point(631, 152);
+			this.txtC2.Location = new System.Drawing.Point(16, 228);
 			this.txtC2.Mask = "AA-AA-AA-AA-AA-AA-AA-AA-AA-AA-AA-AA-AA-AA-AA-AA";
 			this.txtC2.Name = "txtC2";
 			this.txtC2.Size = new System.Drawing.Size(545, 29);
@@ -131,7 +136,7 @@
 			// txtFakeP1
 			// 
 			this.txtFakeP1.Font = new System.Drawing.Font("Courier New", 14.25F);
-			this.txtFakeP1.Location = new System.Drawing.Point(631, 355);
+			this.txtFakeP1.Location = new System.Drawing.Point(16, 397);
 			this.txtFakeP1.Mask = "AA-AA-AA-AA-AA-AA-AA-AA-AA-AA-AA-AA-AA-AA-AA-AA";
 			this.txtFakeP1.Name = "txtFakeP1";
 			this.txtFakeP1.Size = new System.Drawing.Size(545, 29);
@@ -141,78 +146,67 @@
 			// txtI2
 			// 
 			this.txtI2.Font = new System.Drawing.Font("Courier New", 14.25F);
-			this.txtI2.Location = new System.Drawing.Point(631, 277);
+			this.txtI2.Location = new System.Drawing.Point(16, 456);
 			this.txtI2.Mask = "AA-AA-AA-AA-AA-AA-AA-AA-AA-AA-AA-AA-AA-AA-AA-AA";
 			this.txtI2.Name = "txtI2";
 			this.txtI2.Size = new System.Drawing.Size(545, 29);
 			this.txtI2.TabIndex = 15;
 			this.txtI2.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
 			// 
-			// groupBox1
-			// 
-			this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-			this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.groupBox1.Location = new System.Drawing.Point(790, 178);
-			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(187, 69);
-			this.groupBox1.TabIndex = 16;
-			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "AES Decrypt (key unknown)";
-			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
 			this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label3.Location = new System.Drawing.Point(3, 125);
+			this.label3.Location = new System.Drawing.Point(679, 142);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(33, 24);
+			this.label3.Size = new System.Drawing.Size(426, 24);
 			this.label3.TabIndex = 17;
-			this.label3.Text = "C1";
+			this.label3.Text = "XOR the real block 1 with the intermediate value...";
 			// 
 			// label4
 			// 
 			this.label4.AutoSize = true;
 			this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label4.Location = new System.Drawing.Point(627, 125);
+			this.label4.Location = new System.Drawing.Point(12, 201);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(33, 24);
+			this.label4.Size = new System.Drawing.Size(534, 24);
 			this.label4.TabIndex = 18;
-			this.label4.Text = "C2";
+			this.label4.Text = "... and send it to server with real Block 2 that we want to decrypt";
 			// 
 			// label5
 			// 
 			this.label5.AutoSize = true;
 			this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label5.Location = new System.Drawing.Point(627, 250);
+			this.label5.Location = new System.Drawing.Point(12, 429);
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(313, 24);
+			this.label5.Size = new System.Drawing.Size(629, 24);
 			this.label5.TabIndex = 19;
-			this.label5.Text = "Intermediate value after AES decrypt";
+			this.label5.Text = "And XOR with fake Block 1 to find the intermediate value after AES decrypt";
 			// 
 			// label6
 			// 
 			this.label6.AutoSize = true;
 			this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label6.Location = new System.Drawing.Point(627, 328);
+			this.label6.Location = new System.Drawing.Point(12, 370);
 			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(326, 24);
+			this.label6.Size = new System.Drawing.Size(402, 24);
 			this.label6.TabIndex = 20;
-			this.label6.Text = "Fake Plaintext For Padding Test (hex)";
+			this.label6.Text = "Which means we know the plaintext yields this:";
 			// 
 			// label7
 			// 
 			this.label7.AutoSize = true;
 			this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label7.Location = new System.Drawing.Point(3, 250);
+			this.label7.Location = new System.Drawing.Point(12, 142);
 			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(80, 24);
+			this.label7.Size = new System.Drawing.Size(411, 24);
 			this.label7.TabIndex = 22;
-			this.label7.Text = "Fake C1";
+			this.label7.Text = "Block 1 try all possible byte values at position x...";
 			// 
 			// txtC1Prime
 			// 
 			this.txtC1Prime.Font = new System.Drawing.Font("Courier New", 14.25F);
-			this.txtC1Prime.Location = new System.Drawing.Point(7, 277);
+			this.txtC1Prime.Location = new System.Drawing.Point(16, 169);
 			this.txtC1Prime.Mask = "AA-AA-AA-AA-AA-AA-AA-AA-AA-AA-AA-AA-AA-AA-AA-AA";
 			this.txtC1Prime.Name = "txtC1Prime";
 			this.txtC1Prime.Size = new System.Drawing.Size(545, 29);
@@ -223,16 +217,16 @@
 			// 
 			this.label8.AutoSize = true;
 			this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label8.Location = new System.Drawing.Point(627, 407);
+			this.label8.Location = new System.Drawing.Point(679, 201);
 			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(171, 24);
+			this.label8.Size = new System.Drawing.Size(323, 24);
 			this.label8.TabIndex = 24;
-			this.label8.Text = "C2 Plaintext (ASCII)";
+			this.label8.Text = "...and get the plaintext for that position";
 			// 
 			// txtBlockPlaintext
 			// 
 			this.txtBlockPlaintext.Font = new System.Drawing.Font("Courier New", 14.25F);
-			this.txtBlockPlaintext.Location = new System.Drawing.Point(631, 434);
+			this.txtBlockPlaintext.Location = new System.Drawing.Point(683, 228);
 			this.txtBlockPlaintext.Name = "txtBlockPlaintext";
 			this.txtBlockPlaintext.Size = new System.Drawing.Size(545, 29);
 			this.txtBlockPlaintext.TabIndex = 25;
@@ -240,7 +234,12 @@
 			// txtDelayMs
 			// 
 			this.txtDelayMs.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtDelayMs.Location = new System.Drawing.Point(810, 78);
+			this.txtDelayMs.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+			this.txtDelayMs.Location = new System.Drawing.Point(810, 70);
 			this.txtDelayMs.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -264,16 +263,16 @@
 			// 
 			this.label9.AutoSize = true;
 			this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label9.Location = new System.Drawing.Point(3, 328);
+			this.label9.Location = new System.Drawing.Point(12, 268);
 			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(156, 24);
+			this.label9.Size = new System.Drawing.Size(482, 24);
 			this.label9.TabIndex = 27;
-			this.label9.Text = "Server Response";
+			this.label9.Text = "Until the server response tells us we\'ve got valid padding";
 			// 
 			// txtServerResponse
 			// 
 			this.txtServerResponse.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtServerResponse.Location = new System.Drawing.Point(7, 356);
+			this.txtServerResponse.Location = new System.Drawing.Point(16, 296);
 			this.txtServerResponse.Margin = new System.Windows.Forms.Padding(4);
 			this.txtServerResponse.Name = "txtServerResponse";
 			this.txtServerResponse.Size = new System.Drawing.Size(430, 29);
@@ -283,7 +282,7 @@
 			// 
 			this.label10.AutoSize = true;
 			this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label10.Location = new System.Drawing.Point(627, 78);
+			this.label10.Location = new System.Drawing.Point(627, 70);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(177, 24);
 			this.label10.TabIndex = 29;
@@ -293,18 +292,62 @@
 			// 
 			this.chkCustomFreq.AutoSize = true;
 			this.chkCustomFreq.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.chkCustomFreq.Location = new System.Drawing.Point(946, 76);
+			this.chkCustomFreq.Location = new System.Drawing.Point(946, 68);
 			this.chkCustomFreq.Name = "chkCustomFreq";
 			this.chkCustomFreq.Size = new System.Drawing.Size(205, 28);
 			this.chkCustomFreq.TabIndex = 31;
 			this.chkCustomFreq.Text = "Custom Frequencies";
 			this.chkCustomFreq.UseVisualStyleBackColor = true;
 			// 
+			// groupBox1
+			// 
+			this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.groupBox1.Location = new System.Drawing.Point(7, 117);
+			this.groupBox1.Name = "groupBox1";
+			this.groupBox1.Size = new System.Drawing.Size(637, 216);
+			this.groupBox1.TabIndex = 33;
+			this.groupBox1.TabStop = false;
+			this.groupBox1.Text = "Step 1";
+			// 
+			// groupBox2
+			// 
+			this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.groupBox2.Location = new System.Drawing.Point(7, 339);
+			this.groupBox2.Name = "groupBox2";
+			this.groupBox2.Size = new System.Drawing.Size(637, 172);
+			this.groupBox2.TabIndex = 34;
+			this.groupBox2.TabStop = false;
+			this.groupBox2.Text = "Step 2";
+			// 
+			// groupBox3
+			// 
+			this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.groupBox3.Location = new System.Drawing.Point(662, 117);
+			this.groupBox3.Name = "groupBox3";
+			this.groupBox3.Size = new System.Drawing.Size(650, 172);
+			this.groupBox3.TabIndex = 35;
+			this.groupBox3.TabStop = false;
+			this.groupBox3.Text = "Step 3";
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+			this.pictureBox1.Location = new System.Drawing.Point(662, 311);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(312, 222);
+			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+			this.pictureBox1.TabIndex = 32;
+			this.pictureBox1.TabStop = false;
+			// 
 			// PadVisual
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1508, 596);
+			this.ClientSize = new System.Drawing.Size(1508, 624);
+			this.Controls.Add(this.pictureBox1);
 			this.Controls.Add(this.chkCustomFreq);
 			this.Controls.Add(this.label10);
 			this.Controls.Add(this.txtServerResponse);
@@ -318,7 +361,6 @@
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label3);
-			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.txtI2);
 			this.Controls.Add(this.txtFakeP1);
 			this.Controls.Add(this.txtC2);
@@ -328,10 +370,14 @@
 			this.Controls.Add(this.txtEncryptedToken);
 			this.Controls.Add(this.txtFullPlainText);
 			this.Controls.Add(this.txtC1);
+			this.Controls.Add(this.groupBox1);
+			this.Controls.Add(this.groupBox2);
+			this.Controls.Add(this.groupBox3);
 			this.Name = "PadVisual";
 			this.Text = "Padding Oracle Visualization";
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.txtDelayMs)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -349,7 +395,6 @@
 		private System.Windows.Forms.MaskedTextBox txtC2;
 		private System.Windows.Forms.MaskedTextBox txtFakeP1;
 		private System.Windows.Forms.MaskedTextBox txtI2;
-		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label5;
@@ -363,6 +408,10 @@
 		private System.Windows.Forms.TextBox txtServerResponse;
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.CheckBox chkCustomFreq;
+		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.GroupBox groupBox2;
+		private System.Windows.Forms.GroupBox groupBox3;
+		private System.Windows.Forms.PictureBox pictureBox1;
 	}
 }
 

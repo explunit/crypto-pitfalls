@@ -21,6 +21,7 @@ namespace VulnServer1.Controllers
 	{
 		public TransactionResult Get( string ticket )
 		{
+			if ( String.IsNullOrEmpty( ticket ) ) return new TransactionResult();
 			var encryptionKeyString = "4f256766a4075027695bd48b444e1ac5c7c17385a1b4f1779e6385da24d97997";
 			byte[] encryptionKey = QuickCrypto.StringToByteArray( encryptionKeyString );
 
