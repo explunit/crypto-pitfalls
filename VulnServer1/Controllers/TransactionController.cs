@@ -30,7 +30,8 @@ namespace VulnServer1.Controllers
 			string decrypted;
 			try
 			{
-				decrypted = QuickCrypto.DecryptStringFromBytes_Aes( ticketBytes, encryptionKey, ivBytes );
+				decrypted = QuickCrypto.DecryptStringFromBytes_Aes( 
+					ticketBytes, encryptionKey, ivBytes );
 			}
 			catch
 			{
