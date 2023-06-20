@@ -10,11 +10,9 @@ namespace Utils
 {
 	public static class QuickCrypto
 	{
-
-		//TODO: need some crypto
-
-
-
+        //public static string DecryptStringFromBytes_Aes( byte[] cipherText, byte[] Key, byte[] IV )
+        //TODO: need some crypto
+        // from here https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.aes?view=netframework-4.8.1
 
 
 
@@ -30,8 +28,19 @@ namespace Utils
 
 
 
-		// http://stackoverflow.com/a/311179/151212
-		public static string ByteArrayToString( byte[] ba )
+
+
+
+
+
+
+
+
+
+
+
+        // http://stackoverflow.com/a/311179/151212
+        public static string ByteArrayToString( byte[] ba )
 		{
 			StringBuilder hex = new StringBuilder( ba.Length * 2 );
 			foreach ( byte b in ba )
